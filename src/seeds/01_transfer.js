@@ -9,14 +9,14 @@ exports.seed = knex => {
         {
           id: 10000,
           name: 'User #1',
-          mail: 'user1@mail.com',
+          email: 'user1@email.com',
           password:
             '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
         },
         {
           id: 10001,
           name: 'User #2',
-          mail: 'user2@mail.com',
+          email: 'user2@email.com',
           password:
             '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
         },

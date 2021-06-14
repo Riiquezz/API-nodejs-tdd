@@ -18,13 +18,13 @@ beforeAll(async () => {
     [
       {
         name: 'User #1',
-        mail: 'user1@gmail.com',
+        email: 'user1@gmail.com',
         password:
           '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
       },
       {
         name: 'User #2',
-        mail: 'user2@gmail.com',
+        email: 'user2@gmail.com',
         password:
           '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
       },

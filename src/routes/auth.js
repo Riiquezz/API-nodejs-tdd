@@ -9,14 +9,14 @@ module.exports = app => {
   const router = express.Router();
   router.post('/signin', (req, res, next) => {
     app.services.user
-      .findOne({ mail: req.body.mail })
+      .findOne({ email: req.body.email })
       .then(user => {
         if (!user) throw new ValidationError('Usuário ou senha errados');
         if (bcrypt.compareSync(req.body.password, user.password)) {
           const payload = {
             id: user.id,
             name: user.name,
-            mail: user.mail,
+            email: user.email,
           };
 
           const token = jwt.encode(payload, secret);

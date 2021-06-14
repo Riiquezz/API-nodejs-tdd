@@ -2,15 +2,15 @@ const request = require('supertest');
 const jwt = require('jwt-simple');
 const app = require('../../src/app');
 
-const mail = `${Date.now()}@gmail.com`;
+const email = `${Date.now()}@gmail.com`;
 const secret = '45dsa546d5as';
 
 let user;
 
 beforeAll(async () => {
   const res = await app.services.user.save({
-    name: 'wanderlei',
-    mail: `${Date.now()}@gmail.com`,
+    name: 'User',
+    email: `${Date.now()}@gmail.com`,
     password: '123456',
   });
 
@@ -32,13 +32,13 @@ test('Deve inserir um usuário', () => {
     .post('/v1/users')
     .set('authorization', `bearer ${user.token}`)
     .send({
-      name: 'Wanderlei',
-      mail,
+      name: 'User',
+      email,
       password: '123456',
     })
     .then(res => {
       expect(res.status).toBe(201);
-      expect(res.body.name).toBe('Wanderlei');
+      expect(res.body.name).toBe('User');
       expect(res.body).not.toHaveProperty('password');
     });
 });
@@ -49,7 +49,7 @@ test('Deve armazenar a senha criptografada', async () => {
     .set('authorization', `bearer ${user.token}`)
     .send({
       name: 'Teste',
-      mail: `${Date.now()}@gmail.com`,
+      email: `${Date.now()}@gmail.com`,
       password: '123456',
     });
   expect(res.status).toBe(201);
@@ -65,7 +65,7 @@ test('Não deve inserir usuário sem Nome', () => {
     .post('/v1/users')
     .set('authorization', `bearer ${user.token}`)
     .send({
-      mail,
+      email,
       password: '123456',
     })
     .then(res => {
@@ -77,7 +77,7 @@ test('Não deve inserir usuário sem email', async () => {
   const result = await request(app)
     .post('/v1/users')
     .set('authorization', `bearer ${user.token}`)
-    .send({ name: 'Wanderlei', password: '123456' });
+    .send({ name: 'User', password: '123456' });
 
   expect(result.status).toBe(400);
   expect(result.body.error).toBe('Email obrigatorio');
@@ -86,7 +86,7 @@ test('Não deve inserir usuário sem email', async () => {
 // test('Não deve inserir usuário sem senha', () => {
 //   request(app)
 //     .post('/users')
-//     .send({ name: 'Wanderlei', mail: 'w@w.com' })
+//     .send({ name: 'User', email: 'w@w.com' })
 //     .then(res => {
 //       expect(res.status).toBe(400);
 //       expect(res.body.error).toBe('Senha obrigatorio');
@@ -99,8 +99,8 @@ test('Não deve inserir usuário com email cadastrado', () => {
     .post('/v1/users')
     .set('authorization', `bearer ${user.token}`)
     .send({
-      name: 'Wanderlei',
-      mail,
+      name: 'User',
+      email,
       password: '123456',
     })
     .then(res => {

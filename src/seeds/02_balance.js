@@ -6,21 +6,21 @@ exports.seed = knex => {
       {
         id: 10100,
         name: 'User #3',
-        mail: 'user3@mail.com',
+        email: 'user3@email.com',
         password:
           '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
       },
       {
         id: 10101,
         name: 'User #4',
-        mail: 'user4@mail.com',
+        email: 'user4@email.com',
         password:
           '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
       },
       {
         id: 10102,
         name: 'User #5',
-        mail: 'user5@mail.com',
+        email: 'user5@email.com',
         password:
           '$2a$10$VHij24eKRPAweus5K.yrsu80gD3wBn7uY0iD7Cul3cYin5sc3i5tm',
       },

@@ -10,7 +10,7 @@ let user2;
 beforeEach(async () => {
   const res = await app.services.user.save({
     name: 'User Account',
-    mail: `${Date.now()}@gmail.com`,
+    email: `${Date.now()}@gmail.com`,
     password: '123456',
   });
 
@@ -19,7 +19,7 @@ beforeEach(async () => {
 
   const res2 = await app.services.user.save({
     name: 'User Account 2',
-    mail: `${Date.now()}@gmail.com`,
+    email: `${Date.now()}@gmail.com`,
     password: '123456',
   });
 

@@ -3,7 +3,7 @@ const ValidationError = require('../errors/ValidationError');
 
 module.exports = app => {
   const findAll = () => {
-    return app.db('users').select(['id', 'name', 'mail']);
+    return app.db('users').select(['id', 'name', 'email']);
   };
 
   const findOne = (filter = {}) => {
@@ -21,16 +21,16 @@ module.exports = app => {
   const save = async user => {
     if (!user.name) throw new ValidationError('Nome obrigatório');
 
-    if (!user.mail) throw new ValidationError('Email obrigatorio');
+    if (!user.email) throw new ValidationError('Email obrigatorio');
 
     if (!user.password) throw new ValidationError('Senha obrigatorio');
 
-    const userDb = await findOne({ mail: user.mail });
+    const userDb = await findOne({ email: user.email });
     if (userDb) throw new ValidationError('Email já cadastrado');
 
     const newUser = { ...user };
     newUser.password = getPassHash(user.password);
-    return app.db('users').insert(newUser, ['id', 'name', 'mail']);
+    return app.db('users').insert(newUser, ['id', 'name', 'email']);
   };
 
   return { findAll, save, findOne };
