@@ -9,7 +9,7 @@ let user2;
 
 beforeEach(async () => {
   const res = await app.services.user.save({
-    name: 'wanderlei',
+    name: 'User Account',
     mail: `${Date.now()}@gmail.com`,
     password: '123456',
   });
@@ -18,7 +18,7 @@ beforeEach(async () => {
   user.token = jwt.encode(user, secret);
 
   const res2 = await app.services.user.save({
-    name: 'wanderlei 2',
+    name: 'User Account 2',
     mail: `${Date.now()}@gmail.com`,
     password: '123456',
   });
@@ -48,20 +48,20 @@ test('Não Deve inserir uma conta sem Nome', () => {
     });
 });
 
-// test('Deve listar todas as contas', () => {
-//   return app
-//     .db('accounts')
-//     .insert({ name: 'Acc List', user_id: user.id })
-//     .then(() =>
-//       request(app)
-//         .get(MAIN_ROUTE)
-//         .set('authorization', `bearer ${user.token}`)
-//     )
-//     .then(res => {
-//       expect(res.status).toBe(200);
-//       expect(res.body.length).toBeGreaterThan(0);
-//     });
-// });
+ test('Deve listar todas as contas', () => {
+   return app
+     .db('accounts')
+     .insert({ name: 'Acc List', user_id: user.id })
+     .then(() =>
+       request(app)
+         .get(MAIN_ROUTE)
+         .set('authorization', `bearer ${user.token}`)
+     )
+     .then(res => {
+       expect(res.status).toBe(200);
+       expect(res.body.length).toBeGreaterThan(0);
+     });
+ });
 
 test('Deve retornar uma conta por ID', () => {
   return app
